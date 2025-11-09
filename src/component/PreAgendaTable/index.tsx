@@ -148,7 +148,7 @@ const PreAgendaTable = () => {
           <circle cx="17" cy="17" r="3"></circle>
           <path d="M17 15v2l1 1"></path>
         </svg>
-        <p className='text-blue-450'>Tidak ada data agenda pada hari ini.</p>
+        <p className='text-blue-450'>Tidak ada data agenda pada hari ini ya.</p>
       </div>
     </div>
     )
