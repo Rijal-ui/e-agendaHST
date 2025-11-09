@@ -13,13 +13,14 @@ interface ApiAgendaItem {
   jam_mulai: string;
   lokasi_kegiatan: string;
   pelaksana: string;
+  catatan: string;
 }
 
 const API_URL = 'https://e-agenda.hstkab.go.id/api/agendas/public/daily/global'; // Ganti dengan URL API kedua Anda
 const RAW_TOKEN = 'your-secure-api-token-here-change-in-production';
 
 const PreAgendaTable = () => {
-  const headers = ['Kegiatan', 'Hari/Tanggal', 'Waktu', 'Tempat', 'Pelaksana'];
+  const headers = ['Kegiatan', 'Hari/Tanggal', 'Waktu', 'Tempat', 'Pelaksana', 'Catatan'];
   const [allAgendaData, setAllAgendaData] = useState<ApiAgendaItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -76,7 +77,8 @@ const PreAgendaTable = () => {
         tanggal={getFormattedDate(agenda.tanggal_kegiatan)}
         waktu={agenda.jam_mulai} 
         tempat={agenda.lokasi_kegiatan}
-        pelaksana={agenda.pelaksana} />
+        pelaksana={agenda.pelaksana}
+        catatan={agenda.catatan} />
       ));
       return [agendaRows];
     });
@@ -85,15 +87,13 @@ const PreAgendaTable = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-white p-2 rounded-2xl text-blue-950 shadow-xl mt-2 border-r-8 border-blue-400">
-        <div className='bg-blue-200 rounded-xl text-blue-800 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
+      <div className="bg-white p-2 rounded-2xl shadow-xl mt-2 flex flex-col border-b-8 border-yellow-900">
+      <div className='bg-yellow-200 rounded-xl text-yellow-900 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
           Agenda
         </div>
-
-      <div className="grid grid-cols-5 gap-4 p-4 font-bold text-white bg-blue-950 rounded-xl">
-        {headers.map((header) => (
-          <div key={header} className="text-sm md:text-base text-center">{header}</div>
-        ))}
+        
+      <div className="grid grid-cols-6 gap-4 p-2 font-bold text-white bg-yellow-900 rounded-xl flex-shrink-0">
+        {headers.map(header => <div key={header} className="text-sm md:text-base text-center">{header}</div>)}
       </div>
 
       <div className="text-center p-4 text-gray-500 animate-pulse">
@@ -104,15 +104,13 @@ const PreAgendaTable = () => {
   }
   if (error) {
     return (
-      <div className="bg-white p-2 rounded-2xl text-blue-950 shadow-xl mt-2 border-r-8 border-blue-400">
-        <div className='bg-blue-200 rounded-xl text-blue-800 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
+      <div className="bg-white p-2 rounded-2xl shadow-xl mt-2 flex flex-col border-b-8 border-yellow-900">
+      <div className='bg-yellow-200 rounded-xl text-yellow-900 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
           Agenda
         </div>
-
-      <div className="grid grid-cols-5 gap-4 p-4 font-bold text-white bg-blue-950 rounded-xl">
-        {headers.map((header) => (
-          <div key={header} className="text-sm md:text-base text-center">{header}</div>
-        ))}
+        
+      <div className="grid grid-cols-6 gap-4 p-2 font-bold text-white bg-yellow-900 rounded-xl flex-shrink-0">
+        {headers.map(header => <div key={header} className="text-sm md:text-base text-center">{header}</div>)}
       </div>
 
       <div className="text-center p-4 text-red-500">
@@ -123,15 +121,13 @@ const PreAgendaTable = () => {
   }
   if (Object.keys(allAgendaData).length === 0) {
     return (
-    <div className="bg-white p-2 rounded-2xl text-blue-950 shadow-xl mt-2 border-r-8 border-blue-400">
-      <div className='bg-blue-200 rounded-xl text-blue-800 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
+    <div className="bg-white p-2 rounded-2xl shadow-xl mt-2 flex flex-col border-b-8 border-yellow-900">
+      <div className='bg-yellow-200 rounded-xl text-yellow-900 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
           Agenda
         </div>
-
-      <div className="grid grid-cols-5 gap-4 p-4 font-bold text-white bg-blue-950 rounded-xl">
-        {headers.map((header) => (
-          <div key={header} className="text-sm md:text-base text-center">{header}</div>
-        ))}
+        
+      <div className="grid grid-cols-6 gap-4 p-2 font-bold text-white bg-yellow-900 rounded-xl flex-shrink-0">
+        {headers.map(header => <div key={header} className="text-sm md:text-base text-center">{header}</div>)}
       </div>
 
       <div className="text-center p-4 text-gray-500 flex flex-col items-center justify-center space-y-4">
@@ -158,12 +154,12 @@ const PreAgendaTable = () => {
     )
   }
   return (
-    <div className="bg-white p-2 rounded-2xl shadow-xl mt-2 flex flex-col border-r-8 border-blue-400">
-      <div className='bg-blue-200 rounded-xl text-blue-800 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
+    <div className="bg-white p-2 rounded-2xl shadow-xl mt-2 flex flex-col border-b-8 border-yellow-900">
+      <div className='bg-yellow-200 rounded-xl text-yellow-900 font-semibold text-center py-2 px-4 rounded-md mb-2 '>
           Agenda
         </div>
         
-      <div className="grid grid-cols-5 gap-4 p-2 font-bold text-white bg-blue-950 rounded-xl flex-shrink-0">
+      <div className="grid grid-cols-6 gap-4 p-2 font-bold text-white bg-yellow-900 rounded-xl flex-shrink-0">
         {headers.map(header => <div key={header} className="text-sm md:text-base text-center">{header}</div>)}
       </div>
       
